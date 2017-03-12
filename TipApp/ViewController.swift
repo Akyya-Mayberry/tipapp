@@ -19,11 +19,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        billTextField.textAlignment = .right
-        
         // Load all user default preferences
         let defaults = UserDefaults.standard
         tipPercentControl.selectedSegmentIndex = defaults.integer(forKey: "defaultTipPercent")
+        
+        billTextField.textAlignment = .right
+        billTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
