@@ -16,12 +16,10 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         // Set user preferences
-        
         let defaults = UserDefaults.standard
         let selectedDefaultPercent = defaults.integer(forKey: "defaultTipPercent")
         defaultTipControl.selectedSegmentIndex = selectedDefaultPercent
 
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,7 +47,6 @@ class SettingsViewController: UIViewController {
         let defaults = UserDefaults.standard
         let selectedDefault = defaultTipControl.selectedSegmentIndex
         defaults.set(selectedDefault, forKey: "defaultTipPercent")
-        defaults.synchronize()
     }
     
     // Todo:

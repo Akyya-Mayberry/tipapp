@@ -23,9 +23,25 @@ class ViewController: UIViewController {
         let defaults = UserDefaults.standard
         tipPercentControl.selectedSegmentIndex = defaults.integer(forKey: "defaultTipPercent")
         
+        // Set up bill text field
         billTextField.textAlignment = .right
+        billTextField.text = defaults.string(forKey: "lastBillAmount")
+        
+        if billTextField.text == "" || (billTextField.text == nil) {
+            billTextField.placeholder = String(0.00)
+        }
+        
+        
         billTextField.becomeFirstResponder()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // This helps keeps bill textfield up-to-date
+        billUpdate(self)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,6 +66,16 @@ class ViewController: UIViewController {
         
         totalTipTextField.text = String(format: "%.2f", calculateTip)
         totalTextField.text = String(format: "%.2f", calculateTip + bill)
+        
+        // Update last entered
+        // TODO:
+        // Find if there is cleaner way to do this
+        let defaults = UserDefaults.standard
+        defaults.set(billTextField.text!, forKey: "lastBillAmount")
+        
+        if billTextField.text == "" || (billTextField.text == nil) {
+            billTextField.placeholder = String(0.00)
+        }
         
     }
     

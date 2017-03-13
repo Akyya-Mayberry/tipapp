@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let defaults = UserDefaults.standard
+        let reqUserDefaults = ["resetTime": Date(), "lastBillAmount": "0.00"] as [String : Any]
+        defaults.register(defaults: reqUserDefaults)
+        
         return true
     }
 
@@ -39,6 +44,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        // Save user's last bill entry
+        let defaults = UserDefaults.standard
+        let lastBillAmount = defaults.string(forKey: "lastBillAmount")
+        
+        defaults.set(lastBillAmount, forKey: "lastBillAmount")
+        
     }
 
 
