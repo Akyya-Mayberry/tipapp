@@ -4,7 +4,7 @@
 
 Submitted by: **Akyya Mayberry**
 
-Time spent: **6** hours spent in total
+Time spent: **7** hours spent in total
 
 ## User Stories
 
@@ -40,6 +40,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 Describe any challenges encountered while building the app.
 1.) There was some differences in syntax for Swift between when the pre-work and video tutorial was made and now.
 2.) Apples Swift documentation is different from other language documentation (no example code snippets), so finding information quickly and knowing if you implemented a function or something properly takes a bit more effort.
+3.) When saving users input data across multiple app restarts, I started with using UserDefaults to implement this feature then tried to use Swift's preserve/restore states. Trying to use preserve/restore states took a chunk a time and I eventually doubted that it was the right approach.
+4.) It's good that Swift is very descriptive language, it makes code easier to read. But even with XCode, writing Swift can be challenging for newbees.
 ## License
 
     Copyright [yyyy] [name of copyright owner]
