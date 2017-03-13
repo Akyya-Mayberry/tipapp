@@ -31,7 +31,6 @@ class ViewController: UIViewController {
             billTextField.placeholder = String(0.00)
         }
         
-        
         billTextField.becomeFirstResponder()
     }
     

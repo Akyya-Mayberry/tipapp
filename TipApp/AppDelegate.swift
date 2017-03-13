@@ -18,8 +18,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let defaults = UserDefaults.standard
-        let reqUserDefaults = ["resetTime": Date(), "lastBillAmount": "0.00"] as [String : Any]
+        
+        let reqUserDefaults = ["lastBillAmount": "0.00"] as [String : Any]
+        
         defaults.register(defaults: reqUserDefaults)
+        
+        
+        // Remove saved data for user if reset time has passed
+        if defaults.object(forKey: "resetTime") == nil {
+            defaults.set(Date(), forKey: "resetTime")
+            let resetTime = defaults.object(forKey: "resetTime")
+        }
+        
+        let resetTime = defaults.object(forKey: "resetTime")
+        let now = NSDate()
+        let later = now.laterDate(resetTime as! Date)
+        
+        if now.isEqual(to: later) {
+            defaults.set("", forKey: "lastBillAmount")
+            defaults.removeObject(forKey: "resetTime")
+            defaults.set(Date(timeIntervalSinceNow: 5 * 60), forKey: "resetTime")
+        }
         
         return true
     }
@@ -49,10 +68,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         let lastBillAmount = defaults.string(forKey: "lastBillAmount")
         
+        // Update the reset timer that is responsible for saving
+        // users last entered data after the app closes
         defaults.set(lastBillAmount, forKey: "lastBillAmount")
+        defaults.set(NSDate(timeIntervalSinceNow: 5 * 60), forKey: "resetTime")
         
     }
 
 
 }
-
