@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let defaults = UserDefaults.standard
         
-        let reqUserDefaults = ["lastBillAmount": "0.00"] as [String : Any]
+        let reqUserDefaults = ["lastBillAmount": "0.00", "lowerTipRange": [0.05, 0.10, 0.12], "midTipRange": [0.15, 0.20, 0.25], "upperTipRange": [0.18, 0.25, 0.30]] as [String : Any]
         
         defaults.register(defaults: reqUserDefaults)
         
